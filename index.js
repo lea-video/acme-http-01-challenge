@@ -2,7 +2,7 @@
 const storage = new Map();
 
 // Based on https://git.coolaj86.com/coolaj86/acme-http-01-standalone.js
-module.exports.create = function create(config) {
+module.exports.create = function create(config = {}) {
   let verbose = config.verbose || false;
 
   return {

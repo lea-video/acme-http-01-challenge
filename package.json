@@ -1,0 +1,28 @@
+{
+  "name": "acme-http-01-challenge",
+  "description": "",
+  "keywords": [],
+  "version": "0.0.1",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/lea-video/acme-http-01-challenge.git"
+  },
+  "author": "TimeForANinja (https://github.com/timeforaninja)",
+  "contributors": [
+    "Tobias Kutscha (https://github.com/TimeForANinja)"
+  ],
+  "main": "./index.js",
+  "scripts": {
+    "lint": "eslint ./",
+    "lint:fix": "eslint --fix ./",
+    "test": "node test.js"
+  },
+  "devDependencies": {
+    "eslint": "^6.8.0",
+    "acme-challenge-test": "^3.3.2"
+  },
+  "engines": {
+    "node": ">=12"
+  },
+  "license": "MIT"
+}

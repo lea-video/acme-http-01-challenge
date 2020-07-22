@@ -19,6 +19,9 @@ jobs:
       with:
         node-version: ${{ matrix.node-version }}
 
+    - if: matrix.node-version == '6.x'
+      run: npm i bluebird
+
     - run: npm install
     - run: npm run build --if-present
     - run: node -e "require('./');"

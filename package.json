@@ -2,7 +2,7 @@
   "name": "acme-http-01-challenge",
   "description": "",
   "keywords": [],
-  "version": "1.0.0",
+  "version": "1.0.1",
   "repository": {
     "type": "git",
     "url": "git://github.com/lea-video/acme-http-01-challenge.git"

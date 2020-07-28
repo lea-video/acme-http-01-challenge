@@ -1,5 +1,6 @@
 /* eslint-disable no-console */
 const storage = new Map();
+const listeners = [];
 
 // Based on https://git.coolaj86.com/coolaj86/acme-http-01-standalone.js
 module.exports.create = function create(config = {}) {
@@ -18,7 +19,8 @@ module.exports.create = function create(config = {}) {
       const key = `${ch.identifier.value}#${ch.token}`;
       storage.set(key, ch);
 
-      return Promise.resolve(null);
+      // Notify all listeners
+      return Promise.all(listeners.map(func => func('set', data.challenge)));
     },
 
     get: function get(data) {
@@ -38,7 +40,15 @@ module.exports.create = function create(config = {}) {
       const key = `${ch.identifier.value}#${ch.token}`;
       storage.delete(key);
 
-      return Promise.resolve(null);
+      // Notify all listeners
+      return Promise.all(listeners.map(func => func('remove', data.challenge)));
     },
   };
 };
+// Give others in the same context the option to subscribe to changes
+module.exports.notify = cb => {
+  if (typeof cb !== 'function') throw new TypeError('expecting the callback to be a function');
+  listeners.push(cb);
+};
+// Give others in the same context access to the storage
+module.exports.get = () => Array.from(storage.values());
